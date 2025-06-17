@@ -21,7 +21,7 @@ Many useful plugins are out there for Google Tag Manager in WooCommerce. However
 
 * WordPress Version 5.0 or greater is required
 * WooCommerce Plugin 6.0 or greater is required
-* PHP 7.4 or greater is required
+* PHP 8.0 or greater is required
 
 ### Automatic Installation ##
 
@@ -55,6 +55,9 @@ After successfully installing the plugin in your WordPress dashboard, you'll dis
 == Screenshots ==
 
 == Changelog ==
+= 2.0 =
+* Fix for order page
+
 = 1.0 =
 * Initial release
 
