@@ -43,7 +43,11 @@ class DataLayer {
      */
     public function is_fired_event($order_id) {
         $order = wc_get_order($order_id);
+
         $is_tracked = $order ? !empty($order->get_meta(self::$is_tracked_meta_key)) : false;
+
+        var_dump($is_tracked);
+
         return $is_tracked;
 
     }
@@ -54,10 +58,10 @@ class DataLayer {
      * @return void
      */
     public function insert_data_layer() {
-        $is_tracked = $this->is_fired_event($this->order_id);
-        if($is_tracked) return;
-
         add_action('wp_footer', function() {
+            $is_tracked = $this->is_fired_event($this->order_id);
+            if($is_tracked) return;
+
             $order = wc_get_order( $this->order_id );
             if(!($order instanceof \WC_Order)) return;
 
@@ -70,6 +74,7 @@ class DataLayer {
             </script>
         <?php 
             $order = wc_get_order($this->order_id);
+
             if ($order) {
                 $order->update_meta_data(self::$is_tracked_meta_key, true);
                 $order->save();
