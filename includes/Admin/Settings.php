@@ -50,7 +50,7 @@ class Settings {
     public function render_page() {
         ?>
         <div class="wrap">
-            <h2><?php _e('Settings', 'gtm-purchase-wc-thankyou'); ?></h2>
+            <h2><?php _e('Settings', 'gtm-purchase-fix-wc'); ?></h2>
             <?php
              settings_errors();
             ?>
@@ -74,9 +74,9 @@ class Settings {
         register_setting('purchase_datalayer_settings_group', 'purchase_datalayer_settings', array($this, 'validate_settings'));
         add_settings_section('purchase_datalayer_section', '', array($this, 'section_callback'), 'purchase-datalayer-settings');
 
-        add_settings_field('thank_you_page_url', __('Thank You Page URL', 'gtm-purchase-wc-thankyou'), array($this, 'url_field_callback'), 'purchase-datalayer-settings', 'purchase_datalayer_section');
-        add_settings_field('exclude_tax', __('Exclude Tax from Revenue', 'gtm-purchase-wc-thankyou'), array($this, 'exclude_tax_callback'), 'purchase-datalayer-settings', 'purchase_datalayer_section');
-        add_settings_field('exclude_shipping', __('Exclude Shipping from Revenue', 'gtm-purchase-wc-thankyou'), array($this, 'exclude_shipping_callback'), 'purchase-datalayer-settings', 'purchase_datalayer_section');
+        add_settings_field('thank_you_page_url', __('Thank You Page URL', 'gtm-purchase-fix-wc'), array($this, 'url_field_callback'), 'purchase-datalayer-settings', 'purchase_datalayer_section');
+        add_settings_field('exclude_tax', __('Exclude Tax from Revenue', 'gtm-purchase-fix-wc'), array($this, 'exclude_tax_callback'), 'purchase-datalayer-settings', 'purchase_datalayer_section');
+        add_settings_field('exclude_shipping', __('Exclude Shipping from Revenue', 'gtm-purchase-fix-wc'), array($this, 'exclude_shipping_callback'), 'purchase-datalayer-settings', 'purchase_datalayer_section');
     }
 
     /**

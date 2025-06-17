@@ -8,7 +8,7 @@
  * Requires PHP: 8.0
  * Author: Md Hasanuzzaman
  * Author URI: https://leomeasure.com/
- * Text Domain: gtm-purchase-wc-thankyou
+ * Text Domain: gtm-purchase-fix-wc
  * Domain Path: /languages
  * WC requires at least: 6.0
  * WC tested up to: 9.8.1
@@ -39,10 +39,9 @@ if (!class_exists(Settings::class)) {
 	require_once plugin_dir_path(__FILE__) . 'includes/Frontend/DataLayer.php';
  }
 
- final class GTM_Purchase_Event_Woo_Thanks {
+ final class GTM_Purchase_Event_Fixer {
     /**
 	 * Instance of class
-	 *
 	 * @var instance
 	 */
 	static protected $instance;
@@ -127,7 +126,7 @@ if (!class_exists(Settings::class)) {
 	 * @return void
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain('gtm-purchase-wc-thankyou', false, dirname(plugin_basename(__FILE__)) . '/languages');
+		load_plugin_textdomain('gtm-purchase-fix-wc', false, dirname(plugin_basename(__FILE__)) . '/languages');
 	}
 
 	/**
@@ -141,7 +140,7 @@ if (!class_exists(Settings::class)) {
 		$version = $this->script_version();	
 
         if ($screen->id === 'toplevel_page_purchase-datalayer-settings') {
-            wp_enqueue_style('gtm-purchase-wc-thankyou-settings', $this->get_url('assets/css/settings.css'), array(), $version);
+            wp_enqueue_style('gtm-purchase-fix-wc-settings', $this->get_url('assets/css/settings.css'), array(), $version);
         }
     }
 
@@ -303,7 +302,7 @@ if (!class_exists(Settings::class)) {
 
 			$errors[] = sprintf(
 				/* translators: 1. link of plugin, 2. plugin version. */
-				__('Purchase Event for WooCommerce Thank You plugin requires <a href="%1$s" target="_blank">WooCommerce</a> %2$s or greater to be installed and active.', 'gtm-purchase-wc-thankyou'),
+				__('Purchase Event for WooCommerce Thank You plugin requires <a href="%1$s" target="_blank">WooCommerce</a> %2$s or greater to be installed and active.', 'gtm-purchase-fix-wc'),
 				'https://wordpress.org/plugins/woocommerce/',
 				$minimum_woocommerce_version
 			);
@@ -312,7 +311,7 @@ if (!class_exists(Settings::class)) {
 		if (!$wordpress_minimum_met) {
 			$errors[] = sprintf(
 				/* translators: 1. link of wordpress 2. version of WordPress. */
-				__('Purchase Event for WooCommerce Thank You plugin requires <a href="%1$s" target="_blank">WordPress</a> %2$s or greater to be installed and active.', 'gtm-purchase-wc-thankyou'),
+				__('Purchase Event for WooCommerce Thank You plugin requires <a href="%1$s" target="_blank">WordPress</a> %2$s or greater to be installed and active.', 'gtm-purchase-fix-wc'),
 				'https://wordpress.org/',
 				$minimum_wordpress_version
 			);
@@ -321,7 +320,7 @@ if (!class_exists(Settings::class)) {
 		if (!$php_minimum_met) {
 			$errors[] = sprintf(
 				/* translators: 1. version of php */
-				__('Purchase Event for WooCommerce Thank You plugin requires <strong>php version %s</strong> or greater. Please update php version.', 'gtm-purchase-wc-thankyou'),
+				__('Purchase Event for WooCommerce Thank You plugin requires <strong>php version %s</strong> or greater. Please update php version.', 'gtm-purchase-fix-wc'),
 				$minium_php_version
 			);
 		}
@@ -385,7 +384,7 @@ if (!class_exists(Settings::class)) {
 	public function plugin_action_links() {
 		add_action('plugin_action_links_' . plugin_basename(__FILE__), function ($links) {
 			$link_before = array(
-				'settings' => '<a href="' . esc_url(get_admin_url(null, 'admin.php?page=purchase-datalayer-settings')) . '">' . __('Settings', 'gtm-purchase-wc-thankyou') . '</a>',
+				'settings' => '<a href="' . esc_url(get_admin_url(null, 'admin.php?page=purchase-datalayer-settings')) . '">' . __('Settings', 'gtm-purchase-fix-wc') . '</a>',
 			);
 
 			return array_merge($link_before, $links);
@@ -399,6 +398,6 @@ if (!class_exists(Settings::class)) {
  * @since    1.0.0
  */
 function gtm_purchase_wc_thankyou() {
-    return \GTM_Purchase_Event_Woo_Thanks::init(__FILE__);
+    return \GTM_Purchase_Event_Fixer::init(__FILE__);
 }
 gtm_purchase_wc_thankyou();
